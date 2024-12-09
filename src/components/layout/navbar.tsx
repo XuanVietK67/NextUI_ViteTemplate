@@ -93,7 +93,7 @@ export const Navbar = () => {
             </NavbarItem>
           ))}
           {
-            user?.role == 'Seller' ?
+            user?.role !== 'student' ?
               <NavbarItem key={'dashboard'}>
                 <Link
                   className={clsx(
