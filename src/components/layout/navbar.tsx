@@ -1,6 +1,5 @@
 import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
-import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
 import { IoSettingsOutline } from "react-icons/io5";
 
@@ -25,7 +24,7 @@ import {
   SearchIcon,
   Logo,
 } from "@/components/layout/icons";
-import { Avatar, Badge, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
+import { Avatar, Badge, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Link } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { ThemeSwitch } from "./theme-switch";

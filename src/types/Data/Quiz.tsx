@@ -1,10 +1,10 @@
-export type Answer={
+export type Answer = {
     description: string
     correctAnswer: boolean
 }
 
 
-export type Question={
+export type Question = {
     description: string
     image: string
     _id: string
@@ -12,7 +12,7 @@ export type Question={
 }
 
 
-export type Quiz={
+export type Quiz = {
     _id: string
     name: string
     description: string
@@ -20,4 +20,19 @@ export type Quiz={
     level: string
     teacherId: string
     questions: Question[]
+}
+
+export type QuizAssign = {
+    _id: string
+    image: string
+    name: string
+    description: string
+}
+
+export type QuizDone = {
+    _id: string
+    image: string
+    name: string
+    description: string
+    scrore: number
 }

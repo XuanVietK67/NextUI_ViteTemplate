@@ -10,6 +10,10 @@ import LoginPage from "@/auth/login";
 import RegisterPage from "@/auth/register";
 import DashboardPage from "@/pages/AdminPage/dashboard.page";
 import AdminDashboard from "@/pages/AdminPage/admin.dashboard";
+import AddNewStudent from "@/pages/AdminPage/student/AddNewStudent";
+import ViewStudentPage from "@/pages/AdminPage/ViewAllStudent";
+import ViewTeacherPage from "@/pages/AdminPage/teacher/ViewAllTeacher";
+import AddNewTeacher from "@/pages/AdminPage/teacher/AddNewTeacher";
 
 function App() {
   return (
@@ -28,6 +32,13 @@ function App() {
 
       <Route element={<DashboardPage />} path="/dashboard" >
         <Route element={<AdminDashboard />} path="admin" />
+
+
+        <Route element={<ViewTeacherPage />} path="teacher/viewall" />
+        <Route element={<AddNewTeacher />} path="addnewteacher" />
+
+        <Route element={<AddNewStudent />} path="addnewstudent" />
+        <Route element={<ViewStudentPage />} path="student/viewall" />
       </Route>
     </Routes>
   );
