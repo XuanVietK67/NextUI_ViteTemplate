@@ -14,6 +14,8 @@ import AddNewStudent from "@/pages/AdminPage/student/AddNewStudent";
 import ViewStudentPage from "@/pages/AdminPage/ViewAllStudent";
 import ViewTeacherPage from "@/pages/AdminPage/teacher/ViewAllTeacher";
 import AddNewTeacher from "@/pages/AdminPage/teacher/AddNewTeacher";
+import TeacherAction from "@/pages/AdminPage/teacher/TeacherAction";
+import StudentAction from "@/pages/AdminPage/student/StudentAction";
 
 function App() {
   return (
@@ -32,13 +34,15 @@ function App() {
 
       <Route element={<DashboardPage />} path="/dashboard" >
         <Route element={<AdminDashboard />} path="admin" />
-
-
         <Route element={<ViewTeacherPage />} path="teacher/viewall" />
         <Route element={<AddNewTeacher />} path="addnewteacher" />
+        <Route element={<TeacherAction />} path="teacher/action/:id/:action" />
+
 
         <Route element={<AddNewStudent />} path="addnewstudent" />
         <Route element={<ViewStudentPage />} path="student/viewall" />
+        <Route element={<StudentAction />} path="student/action/:id/:action" />
+
       </Route>
     </Routes>
   );

@@ -6,10 +6,10 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 
-type PropsType<T extends FieldValues> = UseControllerProps<T> & InputProps;
+type PropsType<T extends FieldValues> = UseControllerProps<T> & InputProps & { action?: string };
 
 const Input = <T extends FieldValues>(props: PropsType<T>) => {
-  const { control, name, ...inputProps } = props;
+  const { control, name, action, ...inputProps } = props;
 
   const {
     field,
@@ -19,13 +19,13 @@ const Input = <T extends FieldValues>(props: PropsType<T>) => {
     name,
   });
 
-//   const { action } = useProductStore();
+  //   const { action } = useProductStore();
   return (
     <div className="flex flex-col gap-2 ">
       <InputNextUI
         {...field}
         {...inputProps}
-        // disabled={action === "view" ? true : false}
+        disabled={action === "view" ? true : false}
         errorMessage={error?.message}
         isInvalid={!!error?.message}
         labelPlacement="outside"

@@ -47,12 +47,12 @@ const ViewTeacherPage = () => {
 
   const handleViewDetailUser = (teacher: Teacher) => {
     // setAction("view");
-    navigate(`/dashboard/User/action/${teacher._id}`);
+    navigate(`/dashboard/teacher/action/${teacher._id}/view`);
   };
 
   const handleEditUser = (teacher: Teacher) => {
     // setAction("update");
-    navigate(`/dashboard/User/action/${teacher._id}`);
+    navigate(`/dashboard/teacher/action/${teacher._id}/update`);
   };
 
   // const handleDeleteUser = (student: User) => {
@@ -93,14 +93,14 @@ const ViewTeacherPage = () => {
         },
         {
           icon: <EditIcon />,
-          onClick: (User) => handleEditUser(User),
-          label: "Edit User",
+          onClick: (teacher) => handleEditUser(teacher),
+          label: "Edit Teacher",
         },
         {
           icon: <DeleteIcon />,
-          label: "Delete User",
+          label: "Delete Teacher",
           // onClick: (User) => handleDeleteUser(User),
-          onClick: (User) => handleEditUser(User),
+          onClick: (teacher) => handleEditUser(teacher),
           color: "danger" as const,
         },
       ],

@@ -16,3 +16,8 @@ export type StudentValue = {
     name: string
     image?: string
 }
+
+export type dataUpdateStudent={
+    name?: string
+    image?: string
+}

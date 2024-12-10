@@ -45,12 +45,12 @@ const ViewStudentPage = () => {
 
   const handleViewDetailUser = (student: Student) => {
     // setAction("view");
-    navigate(`/dashboard/User/action/${student._id}`);
+    navigate(`/dashboard/student/action/${student._id}/view`);
   };
 
   const handleEditUser = (student: Student) => {
     // setAction("update");
-    navigate(`/dashboard/User/action/${student._id}`);
+    navigate(`/dashboard/student/action/${student._id}/update`);
   };
 
   // const handleDeleteUser = (student: User) => {

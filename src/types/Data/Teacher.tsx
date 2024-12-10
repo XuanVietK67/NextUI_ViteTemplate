@@ -10,8 +10,8 @@ export type Teacher = {
 }
 
 export type TeacherValue={
-    email: string
-    name: string
-    password: string
+    email?: string
+    name?: string
+    password?: string
     image?: string
 }
