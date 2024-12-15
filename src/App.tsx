@@ -11,7 +11,7 @@ import RegisterPage from "@/auth/register";
 import DashboardPage from "@/pages/AdminPage/dashboard.page";
 import AdminDashboard from "@/pages/AdminPage/admin.dashboard";
 import AddNewStudent from "@/pages/AdminPage/student/AddNewStudent";
-import ViewStudentPage from "@/pages/AdminPage/ViewAllStudent";
+import ViewStudentPage from "@/pages/AdminPage/student/ViewAllStudent";
 import ViewTeacherPage from "@/pages/AdminPage/teacher/ViewAllTeacher";
 import AddNewTeacher from "@/pages/AdminPage/teacher/AddNewTeacher";
 import TeacherAction from "@/pages/AdminPage/teacher/TeacherAction";

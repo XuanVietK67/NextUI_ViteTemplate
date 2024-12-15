@@ -31,15 +31,18 @@ export type TableCustom<T> = {
       totalItems: number;
       currentPage: number;
       pageSize: number;
+      from: number;
+      to: number;
     };
     res?: Array<T>;
     result?: Array<T>;
   };
   columns: TableColumn<T>[];
   columnsFilter: TableColumn<T>[];
-  create: () => void;
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
-  showColumnsAction?: boolean
-  filter?: boolean
+  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
+  showColumnsAction?: boolean;
+  filter?: boolean;
+  create: () => void
 };

@@ -10,13 +10,14 @@ import ITable from "@/components/table/Table";
 import { Student } from "@/types/Data/Student";
 import { getListTeacher } from "@/services/teacherService";
 import { Teacher } from "@/types/Data/Teacher";
+import { Avatar } from "@nextui-org/react";
 // import ITable from "@/components/Table";
 // import Table from '@/components/Table'
 
 const ViewTeacherPage = () => {
   const [page, setPage] = useState<number>(1);
   console.log(page);
-  const rowsPerPage = 5;
+  const [rowsPerPage,setRowsPerPage]=useState<number>(5)
 //   const { setAction } = useUserStore();
 
   const navigate = useNavigate();
@@ -71,7 +72,12 @@ const ViewTeacherPage = () => {
     {
       key: "image",
       label: "Avatar",
-      render: ({ image }) => <img src={image} width="60px" height="60px" />,
+      render: (user) => (
+        <div className="flex flex-row items-center gap-1">
+          <Avatar src={user.image} size="md" />
+          <p>{user?.name}</p>
+        </div>
+      ),
     },
     {
       key: "email",
@@ -117,6 +123,7 @@ const ViewTeacherPage = () => {
       showColumnsAction={true}
       columns={columns}
       create={CreateNewTeacher}
+      setRowsPerPage={setRowsPerPage}
     />
   );
 };
