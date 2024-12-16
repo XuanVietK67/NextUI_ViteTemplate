@@ -16,6 +16,9 @@ import ViewTeacherPage from "@/pages/AdminPage/teacher/ViewAllTeacher";
 import AddNewTeacher from "@/pages/AdminPage/teacher/AddNewTeacher";
 import TeacherAction from "@/pages/AdminPage/teacher/TeacherAction";
 import StudentAction from "@/pages/AdminPage/student/StudentAction";
+import AddNewQuiz from "@/pages/AdminPage/quiz/AddNewQuiz";
+import ViewAllQuiz from "@/pages/AdminPage/quiz/ViewAllQuiz";
+import EditQuiz from "@/pages/AdminPage/quiz/EditQuiz";
 
 function App() {
   return (
@@ -37,6 +40,11 @@ function App() {
         <Route element={<ViewTeacherPage />} path="teacher/viewall" />
         <Route element={<AddNewTeacher />} path="addnewteacher" />
         <Route element={<TeacherAction />} path="teacher/action/:id/:action" />
+
+
+        <Route element={<AddNewQuiz />} path="quiz/create" />
+        <Route element={<ViewAllQuiz />} path="quiz/viewall" />
+        <Route element={<EditQuiz />} path="quiz/edit/:id" />
 
 
         <Route element={<AddNewStudent />} path="addnewstudent" />

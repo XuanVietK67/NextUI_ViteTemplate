@@ -1,4 +1,4 @@
-import {  TableCustom } from "@/types";
+import { TableCustom } from "@/types";
 import {
   Button,
   Pagination,
@@ -35,10 +35,10 @@ const ITable = <T extends Record<string, unknown> & { _id: string }>(
   const navigate = useNavigate();
 
 
-  const rowsPerPage=[{key:6,label:6},{key:8,label:8},{key:10,label:10},{key:12,label:12}]
+  const rowsPerPage = [{ key: 6, label: 6 }, { key: 8, label: 8 }, { key: 10, label: 10 }, { key: 12, label: 12 }]
 
-  const handleChangePageSize=(e: React.ChangeEvent<HTMLSelectElement>)=>{
-    console.log("check e.target.value: ",e.target.value)
+  const handleChangePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log("check e.target.value: ", e.target.value)
     props.setPage(1)
     props.setRowsPerPage(+e.target.value)
   }
@@ -72,7 +72,7 @@ const ITable = <T extends Record<string, unknown> & { _id: string }>(
           <Table
             aria-label="Example table with dynamic content"
             shadow="none"
-            // className="h-5/6"
+          // className="h-5/6"
           >
             <TableHeader className="bg-background" columns={columnsFilter}>
               {(column) => (
@@ -111,7 +111,7 @@ const ITable = <T extends Record<string, unknown> & { _id: string }>(
             <Select
               disableSelectorIconRotation
               className="w-12"
-              selectorIcon={<HiOutlineSwitchVertical  />}
+              selectorIcon={<HiOutlineSwitchVertical />}
               onChange={handleChangePageSize}
             >
               {rowsPerPage.map((rows) => (

@@ -4,7 +4,8 @@ import { Button, Tooltip } from "@nextui-org/react";
 const Action = <T extends Record<string, unknown>>(props: any) => {
   const actionss = props;
   const actions = actionss.actions;
-
+  
+  console.log("check actions: ",actions)
   return (
     <div className="relative flex items-center gap-2">
       {actions &&

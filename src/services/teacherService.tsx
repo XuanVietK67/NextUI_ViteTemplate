@@ -16,7 +16,11 @@ const getDetailTeacher = (_id?: string) => {
 const UpdateTeacher = (_id: string, data: TeacherValue) => {
     return axios.patch(`teacher/update?_id=${_id}`, data)
 }
+
+const getAllQuizOfTeacher = (_id: string, current: number, pageSize: number) => {
+    return axios.get(`teacher/getAllQuiz?_id=${_id}&current=${current}&pageSize=${pageSize}`)
+}
 export {
     getListTeacher, addNewTeacher, getDetailTeacher,
-    UpdateTeacher
+    UpdateTeacher, getAllQuizOfTeacher
 }

@@ -39,7 +39,7 @@ export default function AdminLayout({
                         className={`flex flex-row items-center p-2 gap-3 text-title  mx-2 my-2 ${location.pathname == "/dashboard/teacher/viewall" ? "bg-active rounded-md" : ""}`}
                     >
                         <MdOutlineProductionQuantityLimits />
-                        <Link href={"dashboard/teacher/viewall"} className="text-title">
+                        <Link href={user?.role=="admin"? "dashboard/teacher/viewall" : "dashboard/quiz/viewall"} className="text-title">
                             {
                                 user?.role == "admin" ? "Teacher Table" : "All Test"
                             }

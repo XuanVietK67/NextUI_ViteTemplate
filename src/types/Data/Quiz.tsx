@@ -29,6 +29,14 @@ export type QuizAssign = {
     description: string
 }
 
+export type QuizValue={
+    name: string
+    description: string
+    level: string
+    image: string
+    teacherId?: string
+}
+
 export type QuizDone = {
     _id: string
     image: string
