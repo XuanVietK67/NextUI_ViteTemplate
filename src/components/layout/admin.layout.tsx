@@ -22,8 +22,6 @@ export default function AdminLayout({
     const { user, access_Token } = useAuthStore();
     const location = useLocation();
 
-    console.log("check user: ", user)
-    console.log("check user: ", user)
     return (
         <div className="flex flex-row h-screen w-screen overflow-x-hidden">
             <div className="h-screen bg-sidebar flex flex-col justify-between fixed z-10">

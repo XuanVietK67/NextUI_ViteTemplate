@@ -5,13 +5,13 @@ import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
 import { useNavigate } from "react-router"
 import quiz from '@/quiz.jpg'
+import { useAuthStore } from "@/store/AuthStore"
 
 const HomePage = () => {
 
     const [currentPage, setCurrentPage] = useState(1)
     const [pageSize, setPageSize] = useState(8)
-
-
+    const {user}=useAuthStore()
 
     const { data, isFetching, isPending, isLoading } = useQuery({
         queryKey: ['fetchingProduct', currentPage, pageSize],
@@ -22,6 +22,16 @@ const HomePage = () => {
     })
 
     const navigate = useNavigate();
+
+
+    const handleDoTest=(test: Quiz)=>{
+        if(!user){
+            navigate('/login')
+        }
+        else{
+            navigate(`dotest/${test._id}`)
+        }
+    }
 
     if (isLoading) {
         return (
@@ -42,7 +52,7 @@ const HomePage = () => {
             <div className="inline-block w-full text-center justify-center">
                 <div className="gap-5 grid grid-cols-2 sm:grid-cols-4 flex flex-col w-full">
                     {data?.res && data?.res?.length > 0 && data?.res.map((item: Quiz, index: number) => (
-                        <Card shadow="sm" key={index} isPressable onPress={() => navigate(`/order/${item?._id}`)} >
+                        <Card shadow="sm" key={index} isPressable onPress={() => handleDoTest(item)} >
                             <CardBody className="overflow-visible p-0 flex flex-col justify-center align-center w-full">
                                 <Image
                                     shadow="sm"

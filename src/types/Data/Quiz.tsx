@@ -6,8 +6,7 @@ export type Answer = {
 
 export type Question = {
     description: string
-    image: string
-    _id: string
+    image?: string
     answers: Answer[]
 }
 
@@ -29,7 +28,7 @@ export type QuizAssign = {
     description: string
 }
 
-export type QuizValue={
+export type QuizValue = {
     name: string
     description: string
     level: string
@@ -43,4 +42,18 @@ export type QuizDone = {
     name: string
     description: string
     scrore: number
+}
+
+export type dataUpdateQuiz = {
+    image: string
+    name: string
+    description: string
+    level: string
+    questions: Question[]
+}
+
+export type dataUpdateQuestion = {
+    _id: string
+    index: number
+    question: Question
 }

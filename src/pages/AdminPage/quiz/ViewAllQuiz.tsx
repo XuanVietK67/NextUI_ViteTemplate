@@ -1,4 +1,4 @@
-import { DeleteIcon, EditIcon, EyeIcon } from "@/components/layout/icons"
+import { DeleteIcon, EditIcon, EyeIcon, HeartFilledIcon } from "@/components/layout/icons"
 import ITable from "@/components/table/Table"
 import { getListQuiz } from "@/services/quizService"
 import { getAllQuizOfTeacher } from "@/services/teacherService"
@@ -8,6 +8,7 @@ import { Quiz } from "@/types/Data/Quiz"
 import { Avatar } from "@nextui-org/react"
 import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
+import { MdAssignment } from "react-icons/md"
 import { useNavigate } from "react-router"
 
 const ViewAllQuiz = () => {
@@ -28,12 +29,12 @@ const ViewAllQuiz = () => {
         }
     })
 
-    const handleViewDetail = (quiz: Quiz) => {
-
+    const handleAssign = (quiz: Quiz) => {
+        navigate(`/dashboard/quiz/assign/${quiz._id}`)
     }
 
     const handleEdit = (quiz: Quiz) => {
-        navigate(`/dashboard/quiz/edit/${quiz._id}`)
+        navigate(`/dashboard/quiz/edit/${quiz._id}/${user?._id ? user._id : ""}`)
     }
 
     const CreateNewQuiz = () => {
@@ -60,6 +61,15 @@ const ViewAllQuiz = () => {
             label: "Description",
         },
         {
+            key: "numberOfQuestions",
+            label: "Number Of Questions",
+            render: (quiz) => (
+                <div>
+                    {quiz?.questions?.length}
+                </div>
+            )
+        },
+        {
             key: "level",
             label: "Level",
         },
@@ -68,15 +78,22 @@ const ViewAllQuiz = () => {
             label: "ACTION",
             render: [
                 {
+                    icon: <HeartFilledIcon/>,
+                    label: 'Assign Quiz',
+                    onClick: (quiz) => handleAssign(quiz),
+                    color: "primary" as const
+                },
+                {
                     icon: <EditIcon />,
                     onClick: (quiz) => handleEdit(quiz),
                     label: "Edit Quiz",
+                    color: "secondary"
                 },
                 {
                     icon: <DeleteIcon />,
                     label: "Delete Quiz",
                     // onClick: (User) => handleDeleteUser(User),
-                    onClick: (User) => handleEdit(User),
+                    onClick: (quiz) => handleEdit(quiz),
                     color: "danger" as const,
                 },
             ],

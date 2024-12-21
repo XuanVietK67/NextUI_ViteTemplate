@@ -82,14 +82,13 @@ const StudentAction = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col gap-12 mt-4"
             >
-                <InputCustom<StudentValue> control={control} name="email" action={'view'}  label="Email"/>
+                <InputCustom<StudentValue> control={control} name="email" label="Email"/>
 
                 <InputCustom<StudentValue>
                     control={control}
                     name="name"
                     placeholder="student name"
                     label="Name"
-                    action={action}
 
                 />
                 <UploadCustom control={control} name="image" />

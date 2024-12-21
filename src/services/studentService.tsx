@@ -16,7 +16,13 @@ const getDetailStudent = (_id: string) => {
 const UpdateStudent=(_id: string, studentInfo: dataUpdateStudent)=>{
     return axios.patch(`students/update?_id=${_id}`, studentInfo)
 }
+
+const receiveTest=(sId: string, qId: string)=>{
+    return axios.get(`students/receive?sId=${sId}&qId=${qId}`)
+}
+
+
 export {
     getListStudent, addNewStudent, getDetailStudent,
-    UpdateStudent
+    UpdateStudent, receiveTest
 }

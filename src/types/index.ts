@@ -46,3 +46,10 @@ export type TableCustom<T> = {
   filter?: boolean;
   create: () => void
 };
+
+
+export type PopoverCustom<T>={
+  data: T[]
+  render: (item: T)=> JSX.Element
+  isOpen: boolean
+}

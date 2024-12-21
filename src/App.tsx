@@ -19,6 +19,7 @@ import StudentAction from "@/pages/AdminPage/student/StudentAction";
 import AddNewQuiz from "@/pages/AdminPage/quiz/AddNewQuiz";
 import ViewAllQuiz from "@/pages/AdminPage/quiz/ViewAllQuiz";
 import EditQuiz from "@/pages/AdminPage/quiz/EditQuiz";
+import AssignQuiz from "./pages/AdminPage/quiz/AssignQuiz";
 
 function App() {
   return (
@@ -44,7 +45,8 @@ function App() {
 
         <Route element={<AddNewQuiz />} path="quiz/create" />
         <Route element={<ViewAllQuiz />} path="quiz/viewall" />
-        <Route element={<EditQuiz />} path="quiz/edit/:id" />
+        <Route element={<EditQuiz />} path="quiz/edit/:id/:teacherId" />
+        <Route element={<AssignQuiz />} path="quiz/assign/:id" />
 
 
         <Route element={<AddNewStudent />} path="addnewstudent" />

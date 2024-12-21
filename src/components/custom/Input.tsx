@@ -6,10 +6,10 @@ import {
   UseControllerProps,
 } from "react-hook-form";
 
-type PropsType<T extends FieldValues> = UseControllerProps<T> & InputProps & { action?: string };
+type PropsType<T extends FieldValues> = UseControllerProps<T> & InputProps;
 
 const Input = <T extends FieldValues>(props: PropsType<T>) => {
-  const { control, name, action, ...inputProps } = props;
+  const { control, name, ...inputProps } = props;
 
   const {
     field,
@@ -25,7 +25,6 @@ const Input = <T extends FieldValues>(props: PropsType<T>) => {
       <InputNextUI
         {...field}
         {...inputProps}
-        disabled={action === "view" ? true : false}
         errorMessage={error?.message}
         isInvalid={!!error?.message}
         labelPlacement="outside"

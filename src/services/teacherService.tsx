@@ -18,7 +18,7 @@ const UpdateTeacher = (_id: string, data: TeacherValue) => {
 }
 
 const getAllQuizOfTeacher = (_id: string, current: number, pageSize: number) => {
-    return axios.get(`teacher/getAllQuiz?_id=${_id}&current=${current}&pageSize=${pageSize}`)
+    return axios.get(`quizzs/byTeacherId?_id=${_id}&current=${current}&pageSize=${pageSize}`)
 }
 export {
     getListTeacher, addNewTeacher, getDetailTeacher,
