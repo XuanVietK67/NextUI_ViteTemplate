@@ -10,6 +10,11 @@ export type Question = {
     answers: Answer[]
 }
 
+export type Score={
+    result: string[]
+    _id: string
+}
+
 
 export type Quiz = {
     _id: string

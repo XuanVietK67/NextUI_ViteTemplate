@@ -19,7 +19,8 @@ import StudentAction from "@/pages/AdminPage/student/StudentAction";
 import AddNewQuiz from "@/pages/AdminPage/quiz/AddNewQuiz";
 import ViewAllQuiz from "@/pages/AdminPage/quiz/ViewAllQuiz";
 import EditQuiz from "@/pages/AdminPage/quiz/EditQuiz";
-import AssignQuiz from "./pages/AdminPage/quiz/AssignQuiz";
+import AssignQuiz from "@/pages/AdminPage/quiz/AssignQuiz";
+import DoQuiz from "@/pages/AdminPage/quiz/DoQuiz";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
       <Route element={<PricingPage />} path="/pricing" />
       <Route element={<BlogPage />} path="/blog" />
       <Route element={<AboutPage />} path="/about" />
+      <Route element={<DoQuiz />} path="/doquiz/:id" />
 
 
       <Route element={<DashboardPage />} path="/dashboard" >

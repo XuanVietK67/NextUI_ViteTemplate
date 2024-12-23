@@ -11,13 +11,12 @@ import { useNavigate } from 'react-router'
 
 const AddNewQuiz = () => {
 
-    const { handleSubmit, control, reset } = useForm<QuizValue>()
+    const { handleSubmit, control } = useForm<QuizValue>()
     const navigate=useNavigate()
     const { user } = useAuthStore()
 
     const CreateQuiz = useMutation({
         mutationFn: async (data: QuizValue) => {
-            // console.log("check data create quiz: ",{...data,teacherId: user?._id})
             await createNewQuiz(data)
         },
         onSuccess: ()=>{

@@ -40,11 +40,11 @@ const uploadButton = (
 const EditQuiz = () => {
 
     const navigate = useNavigate()
-    const { id, teacherId } = useParams()
+    const { id } = useParams()
 
     const [questions, setQuestions] = useState<Array<Question>>([{ description: "", answers: [{ description: "", correctAnswer: false }] }])
 
-    const { data, isFetching } = useQuery({
+    const { data } = useQuery({
         queryKey: ['quiz', id],
         queryFn: async () => {
             const res = await getQuizDetail(id ? id : "")

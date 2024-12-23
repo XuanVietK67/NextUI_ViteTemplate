@@ -1,11 +1,12 @@
+import { QuizAssign, QuizDone } from "./Quiz"
 
 export type Student = {
     email: string
     name: string
     role: string
     image: string
-    testsAssigned: string[]
-    testsDone: string[]
+    testsAssigned: QuizAssign[]
+    testsDone: QuizDone[]
     _id: string
 }
 

@@ -8,7 +8,6 @@ import { Quiz } from "@/types/Data/Quiz"
 import { Avatar } from "@nextui-org/react"
 import { useQuery } from "@tanstack/react-query"
 import { useState } from "react"
-import { MdAssignment } from "react-icons/md"
 import { useNavigate } from "react-router"
 
 const ViewAllQuiz = () => {

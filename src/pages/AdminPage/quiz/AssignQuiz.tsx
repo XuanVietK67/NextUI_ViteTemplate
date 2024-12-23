@@ -1,21 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { useState } from "react";
-import { DeleteIcon, EditIcon, EyeIcon } from "@/components/layout/icons";
 import { TableColumn } from "@/types";
 import { useNavigate, useParams } from "react-router";
 import { getListStudent, receiveTest } from "@/services/studentService";
 import ITable from "@/components/table/Table";
 import { Student } from "@/types/Data/Student";
-import { Avatar, Checkbox, Chip, cn, Link, User } from "@nextui-org/react";
+import { Checkbox, Chip, cn, Link, User } from "@nextui-org/react";
 
 const AssignQuiz = () => {
     const [page, setPage] = useState<number>(1);
-    const [isSelected, setIsSelected] = useState<boolean>(false)
 
     const {id}=useParams()
     const [rowsPerPage, setRowsPerPage] = useState<number>(5);
-    //   const { setAction } = useUserStore();
 
     const navigate = useNavigate();
 
@@ -56,7 +53,7 @@ const AssignQuiz = () => {
                         ),
                         label: "w-full",
                     }}
-                    isSelected={student.testsAssigned.includes(id as string)}
+                    isSelected={student.testsAssigned.filter((q)=> q._id==id).length>0}
                     onValueChange={()=>handleAssign(student)}
                 >
                     <div className="w-full flex justify-between gap-2">

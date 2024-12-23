@@ -1,3 +1,5 @@
+import { Quiz, QuizAssign, QuizDone } from "./Quiz"
+
 export type User = {
     _id: string
     username: string
@@ -5,6 +7,9 @@ export type User = {
     image: string
     role: string
     is_active: boolean
+    testsAssigned?: QuizAssign[]
+    testsDone?: QuizDone[]
+    testList?: Quiz[]
 }
 
 
