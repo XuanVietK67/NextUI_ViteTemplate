@@ -23,8 +23,8 @@ const getDetailQuiz = (_id: string) => {
     return axios.get(`quizzs/getOne/noCorrectAnswer?_id=${_id}`)
 }
 
-const Grading = (answer: Score) => {
-    return axios.post(`quizzs/score`, answer)
+const Grading = (answer: Score, _id: string) => {
+    return axios.post(`quizzs/score?studentId=${_id}`, answer)
 }
 
 export {

@@ -24,7 +24,7 @@ import { HiOutlineSwitchVertical } from "react-icons/hi";
 const ITable = <T extends Record<string, unknown> & { _id: string }>(
   props: TableCustom<T>
 ) => {
-  let { columns, columnsFilter, data, page, showColumnsAction, filter } = props;
+  let { columns, columnsFilter, data, page, showColumnsAction, filter, footer, header } = props;
   // const hidden = useProductStore.getState().hidden;
   // let columnss: TableColumn<Product>[]=[]
 
@@ -45,28 +45,32 @@ const ITable = <T extends Record<string, unknown> & { _id: string }>(
   console.log("check data: ", data);
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex flex-row justify-between">
-        <div className="flex flex-row gap-3 bg-background items-center pr-5 rounded">
-          <p className="px-3 h-full bg-white rounded-md	flex items-center justify-center border-2">
-            Recent clients
-          </p>
-          <p>Order activity</p>
-          <p>Client engagement</p>
+      {
+        header &&
+        <div className="flex flex-row justify-between">
+          <div className="flex flex-row gap-3 bg-background items-center pr-5 rounded">
+            <p className="px-3 h-full bg-white rounded-md	flex items-center justify-center border-2">
+              Recent clients
+            </p>
+            <p>Order activity</p>
+            <p>Client engagement</p>
+          </div>
+          <div className="flex flex-row justify-end mr-8 gap-3 items-center">
+            {/* {showColumnsAction ? <ColumnAction columns={columns} /> : <></>} */}
+            {filter ? <Filter /> : <></>}
+            <Button
+              size="md"
+              // color="primary"
+              className="flex flex-row gap-1 bg-white border-1 border-gray-400 rounded-lg hover:bg-primary hover:text-white text-ring"
+              onClick={() => props.create()}
+            >
+              <FaPlus />
+              Create
+            </Button>
+          </div>
         </div>
-        <div className="flex flex-row justify-end mr-8 gap-3 items-center">
-          {/* {showColumnsAction ? <ColumnAction columns={columns} /> : <></>} */}
-          {filter ? <Filter /> : <></>}
-          <Button
-            size="md"
-            // color="primary"
-            className="flex flex-row gap-1 bg-white border-1 border-gray-400 rounded-lg hover:bg-primary hover:text-white text-ring"
-            onClick={() => props.create()}
-          >
-            <FaPlus />
-            Create
-          </Button>
-        </div>
-      </div>
+      }
+
       <div className="flex flex-col">
         <div className="h-7/10">
           <Table
@@ -84,7 +88,7 @@ const ITable = <T extends Record<string, unknown> & { _id: string }>(
               items={data?.res ? data.res : data?.result ? data?.result : []}
             >
               {(item) => (
-                <TableRow key={item._id} className="border-b-1 border-special-gray">
+                <TableRow key={`${item._id}-${Math.random()}`} className="border-b-1 border-special-gray">
                   {columnsFilter.map((column) => {
                     return (
                       <TableCell key={column.key}>
@@ -106,40 +110,45 @@ const ITable = <T extends Record<string, unknown> & { _id: string }>(
           </Table>
         </div>
 
-        <div className="bg-background h-3/50 w-100% flex flex-row justify-between">
-          <div className="flex flex-row justify-center items-center gap-2">
-            <Select
-              disableSelectorIconRotation
-              className="w-12"
-              selectorIcon={<HiOutlineSwitchVertical />}
-              onChange={handleChangePageSize}
-            >
-              {rowsPerPage.map((rows) => (
-                <SelectItem key={rows.key}>{rows.label}</SelectItem>
-              ))}
-            </Select>
-            <div className="flex flex-row justify-end items-center h-full ml-3">
-              {data && (
-                <p className="flex flex-row items-center">
-                  Entries per page - from
-                  {` ${data?.pageInfo?.from} to ${data?.pageInfo?.to} / ${data?.pageInfo?.totalItems}`}
-                </p>
-              )}
-            </div>
-          </div>
 
-          {data && (
-            <div className="flex flex-row justify-end items-center h-full">
-              <Pagination
-                color="default"
-                classNames={{ item: "bg-none", cursor: "text-white" }}
-                page={page}
-                total={data?.pageInfo?.totalPage || 1}
-                onChange={(page) => props.setPage(page)}
-              />
+        {
+          footer &&
+          <div className="bg-background h-3/50 w-100% flex flex-row justify-between">
+            <div className="flex flex-row justify-center items-center gap-2">
+              <Select
+                disableSelectorIconRotation
+                className="w-12"
+                selectorIcon={<HiOutlineSwitchVertical />}
+                onChange={handleChangePageSize}
+              >
+                {rowsPerPage.map((rows) => (
+                  <SelectItem key={rows.key}>{rows.label}</SelectItem>
+                ))}
+              </Select>
+              <div className="flex flex-row justify-end items-center h-full ml-3">
+                {data && (
+                  <p className="flex flex-row items-center">
+                    Entries per page - from
+                    {` ${data?.pageInfo?.from} to ${data?.pageInfo?.to} / ${data?.pageInfo?.totalItems}`}
+                  </p>
+                )}
+              </div>
             </div>
-          )}
-        </div>
+
+            {data && (
+              <div className="flex flex-row justify-end items-center h-full">
+                <Pagination
+                  color="default"
+                  classNames={{ item: "bg-none", cursor: "text-white" }}
+                  page={page}
+                  total={data?.pageInfo?.totalPage || 1}
+                  onChange={(page) => props.setPage(page)}
+                />
+              </div>
+            )}
+          </div>
+        }
+
       </div>
     </div>
   );

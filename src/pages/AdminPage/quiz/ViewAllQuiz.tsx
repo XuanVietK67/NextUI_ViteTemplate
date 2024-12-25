@@ -106,6 +106,8 @@ const ViewAllQuiz = () => {
             //   {columns.filter(
             //     (column) => hidden.includes(column.key as never) === false
             //   )}
+            header
+            footer
             page={page}
             setPage={setPage}
             showColumnsAction={true}

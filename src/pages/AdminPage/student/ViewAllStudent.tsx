@@ -11,7 +11,6 @@ import { Avatar } from "@nextui-org/react";
 
 const ViewStudentPage = () => {
   const [page, setPage] = useState<number>(1);
-  console.log(page);
   const [rowsPerPage, setRowsPerPage] = useState<number>(5);
   //   const { setAction } = useUserStore();
 
@@ -66,7 +65,12 @@ const ViewStudentPage = () => {
     {
       key: "testsDone",
       label: "Test Done",
-      render: ({ testsDone }) => <div>{testsDone?.length}</div>,
+      render: ({ testsDone }) =>
+        <div>
+          {
+            testsDone[testsDone.length-1]?.numberOfQuiz ? testsDone[testsDone.length-1].numberOfQuiz: 0
+          }
+        </div>,
     },
     {
       key: "action",
@@ -109,6 +113,8 @@ const ViewStudentPage = () => {
       columns={columns}
       setRowsPerPage={setRowsPerPage}
       create={createNewStudent}
+      header
+      footer
     // filter={true}
     />
   );

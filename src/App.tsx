@@ -21,14 +21,18 @@ import ViewAllQuiz from "@/pages/AdminPage/quiz/ViewAllQuiz";
 import EditQuiz from "@/pages/AdminPage/quiz/EditQuiz";
 import AssignQuiz from "@/pages/AdminPage/quiz/AssignQuiz";
 import DoQuiz from "@/pages/AdminPage/quiz/DoQuiz";
+import ViewQuizDone from "@/pages/AdminPage/student/ViewQuizDone";
+import ResultQuiz from "./pages/AdminPage/quiz/ResultQuiz";
 
 function App() {
   return (
     <Routes>
       <Route element={<IndexPage />} path="/">
-        <Route element={<HomePage />} path="home" />
+        <Route element={<HomePage />} index />
         <Route element={<LoginPage />} path="login" />
         <Route element={<RegisterPage />} path="register" />
+        <Route element={<ViewQuizDone />} path="viewquiz/:id/:qid" />
+        <Route element={<ResultQuiz />} path="result/:key/:studentId/:qid" />
       </Route>
 
       <Route element={<DocsPage />} path="/docs" />

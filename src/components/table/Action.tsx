@@ -10,7 +10,7 @@ const Action = <T extends Record<string, unknown>>(props: any) => {
     <div className="relative flex items-center gap-2">
       {actions &&
         actions.length > 0 &&
-        actions.map((action: ActionElement<T>) => {
+        actions.map((action: ActionElement<T>, index: number) => {
           return (
             <Tooltip
               key={action.label}

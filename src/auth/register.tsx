@@ -95,7 +95,7 @@ const RegisterPage = () => {
 
         {/* <Input type="file" placeholder="image" {...register("image", {})} /> */}
         <div className="flex justify-between">
-          <Link className="cursor-pointer" href="/home">
+          <Link className="cursor-pointer" href="/">
             Return homepage
           </Link>
           <Button type="submit" color="primary">

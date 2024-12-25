@@ -10,7 +10,7 @@ export type Question = {
     answers: Answer[]
 }
 
-export type Score={
+export type Score = {
     result: string[]
     _id: string
 }
@@ -41,12 +41,20 @@ export type QuizValue = {
     teacherId?: string
 }
 
+export type Result = {
+    studentAnswer: string
+    correctAnswer: string
+}
+
 export type QuizDone = {
     _id: string
     image: string
     name: string
     description: string
     scrore: number
+    numberOfQuiz: number
+    result: Result[]
+    key: string
 }
 
 export type dataUpdateQuiz = {

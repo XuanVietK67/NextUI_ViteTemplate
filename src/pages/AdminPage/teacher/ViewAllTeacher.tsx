@@ -117,6 +117,8 @@ const ViewTeacherPage = () => {
   return (
     <ITable<Teacher>
       data={data}
+      header
+      footer
       columnsFilter={columns}
       page={page}
       setPage={setPage}

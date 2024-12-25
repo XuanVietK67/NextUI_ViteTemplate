@@ -20,13 +20,13 @@ export type ActionElement<T> = {
 export type TableColumn<T> = {
   key: string;
   label: string;
-  render?: ((items: T, columnKey: string) => JSX.Element) | ActionElement<T>[];
+  render?: ((items: T, columnKey: string) => JSX.Element) | ActionElement<T>[] ;
 };
 
 
 export type TableCustom<T> = {
   data?: {
-    pageInfo: {
+    pageInfo?: {
       totalPage: number;
       totalItems: number;
       currentPage: number;
@@ -44,6 +44,8 @@ export type TableCustom<T> = {
   setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
   showColumnsAction?: boolean;
   filter?: boolean;
+  header?: boolean;
+  footer?: boolean
   create: () => void
 };
 

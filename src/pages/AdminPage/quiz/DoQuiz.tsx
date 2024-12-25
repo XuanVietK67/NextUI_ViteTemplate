@@ -1,21 +1,27 @@
 
 import { getDetailQuiz, Grading } from "@/services/quizService"
+import { useAuthStore } from "@/store/AuthStore"
 import { Answer, Question, Quiz } from "@/types/Data/Quiz"
 import { Button } from "@nextui-org/button"
 import { Checkbox } from "@nextui-org/react"
 import { useQuery } from "@tanstack/react-query"
-import {  useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useEffect, useState } from "react"
+import { useLocation, useNavigate, useParams } from "react-router"
 
 
 const DoQuiz = () => {
 
     const { id } = useParams()
+    const location = useLocation();
+    const { user } = useAuthStore()
+
+
     const [quiz, setQuiz] = useState<Quiz>()
     const [currentQuestion, setCurrentQuestion] = useState(0)
-    const [questions, setQuestions]=useState<Array<Question>>([])
+    const [questions, setQuestions] = useState<Array<Question>>([])
     const [time, setTime] = useState(1000)
 
+    const navigate=useNavigate()
 
     const { data } = useQuery({
         queryKey: ['quiz', id],
@@ -40,8 +46,8 @@ const DoQuiz = () => {
     }
 
 
-    const handleFinishQuiz =async () => {
-        let result =[""]
+    const handleFinishQuiz = async () => {
+        let result = [""]
         quiz?.questions.forEach((items: any, index: number) => {
             let answer = items.answers
             let correct = ""
@@ -50,13 +56,20 @@ const DoQuiz = () => {
                     correct = correct + answerIndex
                 }
             })
-            result[index] =correct
+            result[index] = correct
         })
-        const dataGrading={result, _id: id? id: ""}
-        await Grading(dataGrading)
+        const dataGrading = { result, _id: id ? id : "" }
+        await Grading(dataGrading, user?._id ? user._id : "")
+        navigate('/')
     }
 
-
+    if(data?.questions.length==0){
+        return(
+            <div>
+                This quiz has no question
+            </div>
+        )
+    }
     return (
         <div className='flex flex-row'>
             <div className='flex flex-col gap-5 w-3/4'>
@@ -73,7 +86,6 @@ const DoQuiz = () => {
                     </div>
                 </div>
                 <div className="border-1 border-special-gray rounded-md pt-20">
-
                     <div className='flex justify-center text-4xl mb-20'>
                         Question {currentQuestion + 1}: {quiz?.questions[currentQuestion].description}
                     </div>

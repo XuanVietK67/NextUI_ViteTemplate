@@ -13,6 +13,10 @@ const getDetailStudent = (_id: string) => {
     return axios.get(`students/detail?_id=${_id}`)
 }
 
+const getDetailUser = (_id: string) => {
+    return axios.get(`students/detail/user?_id=${_id}`)
+}
+
 const UpdateStudent=(_id: string, studentInfo: dataUpdateStudent)=>{
     return axios.patch(`students/update?_id=${_id}`, studentInfo)
 }
@@ -21,10 +25,12 @@ const receiveTest=(sId: string, qId: string)=>{
     return axios.get(`students/receive?sId=${sId}&qId=${qId}`)
 }
 
-
+const getResultQuiz=(sId: string, key: string)=>{
+    return axios.get(`students/viewResult?sid=${sId}&key=${key}`)
+}
 
 
 export {
     getListStudent, addNewStudent, getDetailStudent,
-    UpdateStudent, receiveTest
+    UpdateStudent, receiveTest, getDetailUser, getResultQuiz
 }

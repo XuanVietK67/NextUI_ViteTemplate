@@ -5,10 +5,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 export default function IndexPage() {
 
-  // const navigate=useNavigate()
-  // useEffect(()=>{
-  //   navigate('/home')
-  // },[])
 
   return (
     <DefaultLayout>

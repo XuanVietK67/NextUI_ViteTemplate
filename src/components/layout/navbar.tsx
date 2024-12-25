@@ -69,7 +69,7 @@ export const Navbar = () => {
             id="homepage"
             className="flex justify-start items-center gap-1"
             color="foreground"
-            href="/home"
+            href="/"
           >
             <Logo />
             <p className="font-bold text-inherit">ACME</p>
@@ -155,7 +155,7 @@ export const Navbar = () => {
                   </Dropdown> */}
                 </div>
                 :
-                <Avatar name={user?.name} />
+                <Avatar name={user?.username} />
               }
               <Dropdown >
                 <DropdownTrigger>

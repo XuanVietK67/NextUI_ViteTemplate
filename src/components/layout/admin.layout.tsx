@@ -28,7 +28,7 @@ export default function AdminLayout({
                 <div className="h-100% bg-sidebar w-1/8">
                     <div className="font-bold text-lg h-12 pl-4 flex fle-row gap-3 items-center border-b-1 border-special-gray">
                         <AiFillAliwangwang color={"white"} size={30} />
-                        <Link href="/home" className="text-white">
+                        <Link href="/" className="text-white">
                             Xuan Viet
                         </Link>
                     </div>
