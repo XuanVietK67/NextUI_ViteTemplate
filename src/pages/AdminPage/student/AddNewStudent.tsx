@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import UploadCustom from "@/components/custom/Upload";
 import { StudentValue } from "@/types/Data/Student";
 import { addNewStudent } from "@/services/studentService";
+import Loading from "@/components/layout/Loading";
 
 let studentSchema = object({
     name: string().required("Name cannot be empty"),
@@ -35,7 +36,7 @@ const AddNewStudent = () => {
     const AddNewStudent = useMutation({
         mutationFn: async (studentInfo: StudentValue) => {
             const r = await addNewStudent(studentInfo);
-            console.log("check res create: ",r)
+            console.log("check res create: ", r)
         },
         onSuccess: async () => {
             reset()
@@ -47,24 +48,33 @@ const AddNewStudent = () => {
         AddNewStudent.mutate(data);
     };
 
-    return (
-        <div className="overflow-hidden">
-            <div className="">
-                <h1 className="font-medium text-4xl text-[#0369a1]">Add New Student</h1>
-            </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-                <InputCustom control={control} name="name" label="Name of student" />
-                <InputCustom control={control} name="email" label="Email" />
-                <InputCustom control={control} name="password" label="Password" />
-                <UploadCustom control={control} name="image" />
-                <div className="flex justify-end">
-                    <Button type="submit" color="primary">
-                        Create
-                    </Button>
+    if (AddNewStudent.isPending) {
+        return (
+            <Loading />
+        )
+    }
+    else {
+        return (
+            <div className="overflow-hidden">
+                <div className="">
+                    <h1 className="font-medium text-4xl text-[#0369a1]">Add New Student</h1>
                 </div>
-            </form>
-        </div>
-    );
+                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+                    <InputCustom control={control} name="name" label="Name of student" />
+                    <InputCustom control={control} name="email" label="Email" />
+                    <InputCustom control={control} name="password" label="Password" />
+                    <UploadCustom control={control} name="image" />
+                    <div className="flex justify-end">
+                        <Button type="submit" color="primary">
+                            Create
+                        </Button>
+                    </div>
+                </form>
+            </div>
+        );
+    }
+
+
 };
 
 export default AddNewStudent;

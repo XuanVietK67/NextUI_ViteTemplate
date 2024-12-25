@@ -1,8 +1,12 @@
 import { useAuthStore } from "@/store/AuthStore";
 import axios from "axios";
 const instance = axios.create({
-    baseURL: "http://localhost:8080/api",
+    baseURL: "https://onlinetestbackend-90o6.onrender.com/api/",
 });
+
+
+
+
 
 instance.interceptors.request.use(
     function (config) {

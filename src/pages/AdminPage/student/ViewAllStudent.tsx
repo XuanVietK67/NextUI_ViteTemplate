@@ -8,6 +8,7 @@ import { getListStudent } from "@/services/studentService";
 import ITable from "@/components/table/Table";
 import { Student } from "@/types/Data/Student";
 import { Avatar } from "@nextui-org/react";
+import Loading from "@/components/layout/Loading";
 
 const ViewStudentPage = () => {
   const [page, setPage] = useState<number>(1);
@@ -16,7 +17,7 @@ const ViewStudentPage = () => {
 
   const navigate = useNavigate();
 
-  const { data } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["fetchingUser", page, rowsPerPage],
     queryFn: async () => {
       let res = await getListStudent(page, rowsPerPage);
@@ -68,7 +69,7 @@ const ViewStudentPage = () => {
       render: ({ testsDone }) =>
         <div>
           {
-            testsDone[testsDone.length-1]?.numberOfQuiz ? testsDone[testsDone.length-1].numberOfQuiz: 0
+            testsDone[testsDone.length - 1]?.numberOfQuiz ? testsDone[testsDone.length - 1].numberOfQuiz : 0
           }
         </div>,
     },
@@ -98,26 +99,29 @@ const ViewStudentPage = () => {
   ];
 
 
-  // console.log("check main column: ", columns);
-  // console.log("check hidden: ", hidden);
-  return (
-    <ITable<Student>
-      data={data}
-      columnsFilter={columns}
-      //   {columns.filter(
-      //     (column) => hidden.includes(column.key as never) === false
-      //   )}
-      page={page}
-      setPage={setPage}
-      showColumnsAction={true}
-      columns={columns}
-      setRowsPerPage={setRowsPerPage}
-      create={createNewStudent}
-      header
-      footer
-    // filter={true}
-    />
-  );
+  if (isFetching) {
+    return (
+      <Loading />
+    )
+  }
+  else {
+    return (
+      <ITable<Student>
+        data={data}
+        columnsFilter={columns}
+        page={page}
+        setPage={setPage}
+        showColumnsAction={true}
+        columns={columns}
+        setRowsPerPage={setRowsPerPage}
+        create={createNewStudent}
+        header
+        footer
+      />
+    );
+  }
+
+
 };
 
 export default ViewStudentPage;

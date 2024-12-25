@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + NextUI</title>
+    <title>XuanViet</title>
     <meta key="title" content="Vite + NextUI" property="og:title" />
     <meta content="Make beautiful websites regardless of your design experience." property="og:description" />
     <meta content="Make beautiful websites regardless of your design experience." name="description" />
@@ -13,10 +13,33 @@
       content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
       name="viewport"
     />
-    <link href="/favicon.ico" rel="icon" />
+    <link href="/icon.ico" rel="icon" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyBAZ9-8mnGbaTEmyQr2xWIwkW1YXs0EOsw",
+        authDomain: "xuanviet-d290a.firebaseapp.com",
+        projectId: "xuanviet-d290a",
+        storageBucket: "xuanviet-d290a.firebasestorage.app",
+        messagingSenderId: "936634145762",
+        appId: "1:936634145762:web:d965390d2169c67eecf7bb",
+        measurementId: "G-2Z14HE5Y79"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
   </body>
 </html>

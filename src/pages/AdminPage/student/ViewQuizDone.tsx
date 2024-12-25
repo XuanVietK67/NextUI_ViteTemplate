@@ -7,7 +7,7 @@ import { GiTargetArrows } from "react-icons/gi";
 
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate, useParams } from "react-router"
-import { Button, Card, Skeleton } from "@nextui-org/react"
+import { Button } from "@nextui-org/react"
 import { getDetailQuiz } from "@/services/quizService"
 import { useAuthStore } from "@/store/AuthStore"
 import Loading from "@/components/layout/Loading"
