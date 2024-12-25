@@ -141,7 +141,7 @@ const StudentAction = () => {
 
                 <div>
                     {
-                        action == 'view' && user?.role == 'teacher'
+                        action == 'view' && user?.role == 'teacher' && StudentData && StudentData.result.length>0
                         &&
                         <ITable<QuizDone>
                             data={StudentData}

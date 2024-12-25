@@ -63,7 +63,8 @@ const HomePage = () => {
                                     data.map((item: Quiz, index: number) => (
                                         <div
                                             key={index}
-                                            className="flex flex-col gap-3 bg-white p-3 cursor-pointer border-1 border-special-gray hover:border-red"
+                                            className="flex flex-col gap-3 bg-white p-3 cursor-pointer border-1 border-special-gray 
+                                            hover:border-2 hover:border-special-gray hover:bg-primary hover:text-white"
                                             onClick={() => handleDoQuiz(item)
                                                 // navigate(`/doquiz/${item?._id}`)
                                             }
