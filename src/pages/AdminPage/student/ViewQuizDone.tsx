@@ -18,7 +18,6 @@ const ViewQuizDone = () => {
     const { user } = useAuthStore()
     const location = useLocation()
     const navigate = useNavigate()
-    const [rowsPerPage, setRowsPerPage] = useState<number>(5);
     const { data, refetch, isFetching } = useQuery({
         queryKey: ['fetch student info', id, location],
         queryFn: async () => {
@@ -38,8 +37,8 @@ const ViewQuizDone = () => {
     })
 
 
-    const handleViewResult = (key: string) => {
-        navigate(`/result/${key}/${user?._id ? user._id : ""}/${qid}`)
+    const handleViewResult = (key: string, _id: string) => {
+        navigate(`/result/${key}/${user?._id ? user._id : ""}/${_id}`)
     }
 
 
@@ -63,7 +62,7 @@ const ViewQuizDone = () => {
                 {
                     icon: <GiTargetArrows size="20" />,
                     label: 'View Result',
-                    onClick: ({ key }) => handleViewResult(key),
+                    onClick: ({ key, _id }) => handleViewResult(key, _id),
                     color: 'primary'
                 }
             ]
@@ -93,7 +92,6 @@ const ViewQuizDone = () => {
                             setPage={setPage}
                             showColumnsAction={true}
                             columns={columns}
-                            setRowsPerPage={setRowsPerPage}
                             create={() => { return }}
                         />
                         :
@@ -105,7 +103,7 @@ const ViewQuizDone = () => {
                         color="secondary"
                         onClick={() => navigate(`/doquiz/${qid ? qid : ""}`)}
                     >
-                        {data?.result?.length && data.result.length > 0 ? `Retry ${quizData?.name}` : "Start"}
+                        Start {quizData?.name}
                     </Button>
                     <Button
                         color="primary"

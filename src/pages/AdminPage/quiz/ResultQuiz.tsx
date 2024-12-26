@@ -77,30 +77,30 @@ const ResultQuiz = () => {
                 </div>
                 <div className="w-full flex flex-col gap-5">
                     {
-                        QuizData && QuizData.questions && QuizData.questions.length > 0
-                        && QuizData.questions.map((q: Question, index: number) => {
+                        QuizData && QuizData?.questions && QuizData?.questions?.length > 0
+                        && QuizData?.questions?.map((q: Question, index: number) => {
                             return (
                                 <div key={index} className="flex flex-col gap-2">
                                     <p className="text-3xl font-normal text-blue-300">{`Question ${index + 1}: ${q.description}`}</p>
                                     <div className="flex flex-col gap-1">
                                         {
                                             data?.result && data?.result?.length > 0
-                                            && q.answers.map((a: any, aindex: number) => {
+                                            && q?.answers?.map((a: any, aindex: number) => {
                                                 return (
                                                     <div key={aindex} className="flex flex-row gap-3 text-xl items-center">
                                                         <Checkbox
                                                             color="secondary"
                                                             isSelected={
                                                                 // aindex == data?.result[index]?.studentAnswer ? +data.result[index].studentAnswer : -1
-                                                                data?.result[index]?.studentAnswer == '' ? false : aindex == +data?.result[index].studentAnswer
+                                                                data?.result[index]?.studentAnswer == '' ? false : aindex == +data?.result[index]?.studentAnswer
                                                             }
                                                         />
                                                         <p>
-                                                            {a.description}
+                                                            {a?.description}
                                                         </p>
                                                         <div>
                                                             {
-                                                                !!a.correctAnswer == true ?
+                                                                !!a?.correctAnswer == true ?
                                                                     <TiTickOutline size={20} color="green" />
                                                                     :
                                                                     ""

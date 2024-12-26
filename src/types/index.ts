@@ -41,7 +41,7 @@ export type TableCustom<T> = {
   columnsFilter: TableColumn<T>[];
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
-  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
+  setRowsPerPage?: React.Dispatch<React.SetStateAction<number>>;
   showColumnsAction?: boolean;
   filter?: boolean;
   header?: boolean;

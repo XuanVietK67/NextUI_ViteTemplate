@@ -1,8 +1,6 @@
 import { getListQuiz } from "@/services/quizService"
 import { Quiz } from "@/types/Data/Quiz"
-import { Card, Skeleton, Spinner } from "@nextui-org/react"
 import { useQuery } from "@tanstack/react-query"
-import { useState } from "react"
 import { useNavigate } from "react-router"
 import { useAuthStore } from "@/store/AuthStore"
 import { getDetailUser } from "@/services/studentService"
@@ -10,12 +8,12 @@ import Loading from "@/components/layout/Loading"
 
 const HomePage = () => {
 
-    const [currentPage, setCurrentPage] = useState(1)
+    const currentPage=1
     // const [pageSize, setPageSize] = useState(8)
     const pageSize = 8
     const { user } = useAuthStore()
 
-    const { data, isFetching, isLoading } = useQuery({
+    const { data, isFetching } = useQuery({
         queryKey: ['fetchingProduct', user],
         queryFn: async () => {
             if (user?.role == 'student') {
@@ -64,7 +62,7 @@ const HomePage = () => {
                                         <div
                                             key={index}
                                             className="flex flex-col gap-3 bg-white p-3 cursor-pointer border-1 border-special-gray 
-                                            hover:border-2 hover:border-special-gray hover:bg-primary hover:text-white"
+                                            hover:border-5 hover:p-3"
                                             onClick={() => handleDoQuiz(item)
                                                 // navigate(`/doquiz/${item?._id}`)
                                             }
@@ -99,7 +97,8 @@ const HomePage = () => {
                                     data?.res?.length > 0 &&
                                     data?.res.map((item: Quiz, index: number) => (
                                         <div
-                                            className="flex flex-col gap-3 bg-white p-3 cursor-pointer border-1 border-special-gray hover:border-red"
+                                            className="flex flex-col gap-3 bg-white p-3 cursor-pointer border-1 border-special-gray 
+                                            hover:border-5 hover:p-3"
                                             onClick={() => handleDoQuiz(item)
                                                 // navigate(`/doquiz/${item?._id}`)
                                             }

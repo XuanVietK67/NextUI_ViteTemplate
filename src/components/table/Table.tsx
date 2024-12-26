@@ -2,8 +2,6 @@ import { TableCustom } from "@/types";
 import {
   Button,
   Pagination,
-  Select,
-  SelectItem,
   Table,
   TableBody,
   TableCell,
@@ -11,20 +9,18 @@ import {
   TableHeader,
   TableRow,
 } from "@nextui-org/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import Action from "./Action";
 // import { useProductStore } from "@/store/ProductStore";
 // import ColumnAction from "./ColumnAction";
 import { FaPlus } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import Filter from "./Filter";
-import { HiOutlineSwitchVertical } from "react-icons/hi";
 
 
 const ITable = <T extends Record<string, unknown> & { _id: string }>(
   props: TableCustom<T>
 ) => {
-  let { columns, columnsFilter, data, page, showColumnsAction, filter, footer, header } = props;
+  let { columnsFilter, data, page, filter, footer, header } = props;
   // const hidden = useProductStore.getState().hidden;
   // let columnss: TableColumn<Product>[]=[]
 
@@ -32,16 +28,14 @@ const ITable = <T extends Record<string, unknown> & { _id: string }>(
     return <div>{product[columnKey] as JSX.Element}</div>;
   }, []);
 
-  const navigate = useNavigate();
 
 
-  const rowsPerPage = [{ key: 6, label: 6 }, { key: 8, label: 8 }, { key: 10, label: 10 }, { key: 12, label: 12 }]
 
-  const handleChangePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log("check e.target.value: ", e.target.value)
-    props.setPage(1)
-    props.setRowsPerPage(+e.target.value)
-  }
+  // const handleChangePageSize = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   console.log("check e.target.value: ", e.target.value)
+  //   props.setPage(1)
+  //   props.setRowsPerPage(+e.target.value)
+  // }
   console.log("check data: ", data);
   return (
     <div className="flex flex-col gap-2">
@@ -115,16 +109,16 @@ const ITable = <T extends Record<string, unknown> & { _id: string }>(
           footer &&
           <div className="bg-background h-3/50 w-100% flex flex-row justify-between">
             <div className="flex flex-row justify-center items-center gap-2">
-              <Select
+              {/* <Select
                 disableSelectorIconRotation
                 className="w-12"
                 selectorIcon={<HiOutlineSwitchVertical />}
-                onChange={handleChangePageSize}
+                // onChange={handleChangePageSize}
               >
                 {rowsPerPage.map((rows) => (
                   <SelectItem key={rows.key}>{rows.label}</SelectItem>
                 ))}
-              </Select>
+              </Select> */}
               <div className="flex flex-row justify-end items-center h-full ml-3">
                 {data && (
                   <p className="flex flex-row items-center">

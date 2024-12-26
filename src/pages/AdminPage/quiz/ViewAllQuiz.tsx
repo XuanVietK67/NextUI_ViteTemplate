@@ -1,6 +1,6 @@
-import { DeleteIcon, EditIcon, EyeIcon, HeartFilledIcon } from "@/components/layout/icons"
+import { DeleteIcon, EditIcon, HeartFilledIcon } from "@/components/layout/icons"
+import Loading from "@/components/layout/Loading"
 import ITable from "@/components/table/Table"
-import { getListQuiz } from "@/services/quizService"
 import { getAllQuizOfTeacher } from "@/services/teacherService"
 import { useAuthStore } from "@/store/AuthStore"
 import { TableColumn } from "@/types"
@@ -18,7 +18,7 @@ const ViewAllQuiz = () => {
     const [page, setPage] = useState<number>(1)
     const [rowsPerPage, setRowsPerPage] = useState<number>(5)
 
-    const { data } = useQuery({
+    const { data, isFetching } = useQuery({
         queryKey: ['quiz', page, rowsPerPage],
         queryFn: async () => {
             // const res = await getAllQuizOfTeacher(user?._id ? user._id : "")
@@ -77,7 +77,7 @@ const ViewAllQuiz = () => {
             label: "ACTION",
             render: [
                 {
-                    icon: <HeartFilledIcon/>,
+                    icon: <HeartFilledIcon />,
                     label: 'Assign Quiz',
                     onClick: (quiz) => handleAssign(quiz),
                     color: "primary" as const
@@ -98,25 +98,32 @@ const ViewAllQuiz = () => {
             ],
         },
     ];
-    console.log("check data: ", data)
-    return (
-        <ITable<Quiz>
-            data={data}
-            columnsFilter={columns}
-            //   {columns.filter(
-            //     (column) => hidden.includes(column.key as never) === false
-            //   )}
-            header
-            footer
-            page={page}
-            setPage={setPage}
-            showColumnsAction={true}
-            columns={columns}
-            setRowsPerPage={setRowsPerPage}
-            create={CreateNewQuiz}
-        // filter={true}
-        />
-    )
+
+    if (isFetching) {
+        return (
+            <Loading />
+        )
+    }
+    else {
+        return (
+            <ITable<Quiz>
+                data={data}
+                columnsFilter={columns}
+                //   {columns.filter(
+                //     (column) => hidden.includes(column.key as never) === false
+                //   )}
+                header
+                footer
+                page={page}
+                setPage={setPage}
+                showColumnsAction={true}
+                columns={columns}
+                setRowsPerPage={setRowsPerPage}
+                create={CreateNewQuiz}
+            // filter={true}
+            />
+        )
+    }
 }
 
 export default ViewAllQuiz

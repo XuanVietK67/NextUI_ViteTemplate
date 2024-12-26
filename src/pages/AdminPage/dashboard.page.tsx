@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { Outlet, useNavigate } from "react-router-dom"
 
 const DashboardPage = () => {
-    const { user, access_Token } = useAuthStore()
+    const { access_Token } = useAuthStore()
     const navigate = useNavigate()
     useEffect(() => {
         if (!access_Token) {

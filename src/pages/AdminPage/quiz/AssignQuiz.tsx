@@ -7,28 +7,28 @@ import { getListStudent, receiveTest } from "@/services/studentService";
 import ITable from "@/components/table/Table";
 import { Student } from "@/types/Data/Student";
 import { Checkbox, Chip, cn, Link, User } from "@nextui-org/react";
+import Loading from "@/components/layout/Loading";
 
 const AssignQuiz = () => {
     const [page, setPage] = useState<number>(1);
 
-    const {id}=useParams()
+    const { id } = useParams()
     const [rowsPerPage, setRowsPerPage] = useState<number>(5);
 
     const navigate = useNavigate();
 
-    const { data, refetch } = useQuery({
+    const { data, refetch, isFetching } = useQuery({
         queryKey: ["fetchingUser", page, rowsPerPage],
         queryFn: async () => {
             let res = await getListStudent(page, rowsPerPage);
-            console.log("cheeck res: ", res.data.data)
             return res.data.data;
         },
     });
 
 
-    const handleAssign=async (student: Student)=>{
-        const res=await receiveTest(student._id, id? id: "")
-        console.log("check res receive: ",res)
+    const handleAssign = async (student: Student) => {
+        const res = await receiveTest(student._id, id ? id : "")
+        console.log("check res receive: ", res)
         refetch()
     }
 
@@ -53,8 +53,8 @@ const AssignQuiz = () => {
                         ),
                         label: "w-full",
                     }}
-                    isSelected={student.testsAssigned.filter((q)=> q._id==id).length>0}
-                    onValueChange={()=>handleAssign(student)}
+                    isSelected={student.testsAssigned.filter((q) => q._id == id).length > 0}
+                    onValueChange={() => handleAssign(student)}
                 >
                     <div className="w-full flex justify-between gap-2">
                         <User
@@ -96,25 +96,33 @@ const AssignQuiz = () => {
         }
     ];
 
+    if (isFetching) {
+        return (
+            <Loading />
+        )
+    }
+    else {
+        return (
+            <ITable<Student>
+                data={data}
+                columnsFilter={columns}
+                //   {columns.filter(
+                //     (column) => hidden.includes(column.key as never) === false
+                //   )}
+                page={page}
+                footer
+                header
+                setPage={setPage}
+                showColumnsAction={true}
+                columns={columns}
+                setRowsPerPage={setRowsPerPage}
+                create={createNewStudent}
+            // filter={true}
+            />
+        );
+    }
 
-    // console.log("check main column: ", columns);
-    // console.log("check hidden: ", hidden);
-    return (
-        <ITable<Student>
-            data={data}
-            columnsFilter={columns}
-            //   {columns.filter(
-            //     (column) => hidden.includes(column.key as never) === false
-            //   )}
-            page={page}
-            setPage={setPage}
-            showColumnsAction={true}
-            columns={columns}
-            setRowsPerPage={setRowsPerPage}
-            create={createNewStudent}
-        // filter={true}
-        />
-    );
+
 };
 
 export default AssignQuiz;

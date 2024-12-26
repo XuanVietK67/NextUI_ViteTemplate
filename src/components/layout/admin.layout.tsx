@@ -9,7 +9,7 @@ import {
 import { FaRegUser } from "react-icons/fa6";
 import { FaUserCog } from "react-icons/fa";
 import { useAuthStore } from "@/store/AuthStore";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { SearchIcon } from "@/components/layout/icons";
 import { BiSolidBellRing } from "react-icons/bi";
 import { TbSwitchVertical } from "react-icons/tb";
@@ -19,7 +19,7 @@ export default function AdminLayout({
 }: {
     children: React.ReactNode;
 }) {
-    const { user, access_Token } = useAuthStore();
+    const { user } = useAuthStore();
     const location = useLocation();
 
     return (
@@ -34,10 +34,10 @@ export default function AdminLayout({
                     </div>
 
                     <div
-                        className={`flex flex-row items-center p-2 gap-3 text-title  mx-2 my-2 ${location.pathname == "/dashboard/teacher/viewall" ? "bg-active rounded-md" : ""}`}
+                        className={`flex flex-row items-center p-2 gap-3 text-title  mx-2 my-2 ${location.pathname == "/dashboard/teacher/viewall" || location.pathname == "/dashboard/quiz/viewall" ? "bg-active rounded-md" : ""}`}
                     >
                         <MdOutlineProductionQuantityLimits />
-                        <Link href={user?.role=="admin"? "dashboard/teacher/viewall" : "dashboard/quiz/viewall"} className="text-title">
+                        <Link href={user?.role == "admin" ? "dashboard/teacher/viewall" : "dashboard/quiz/viewall"} className="text-title">
                             {
                                 user?.role == "admin" ? "Teacher Table" : "All Test"
                             }
