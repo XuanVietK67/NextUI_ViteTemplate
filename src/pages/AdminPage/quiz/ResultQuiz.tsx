@@ -42,7 +42,7 @@ const ResultQuiz = () => {
     }
 
 
-    console.log("chek quix: ", QuizData)
+    console.log("chek quix: ", data)
     if (isFetching || FetchResultQuiz) {
         return (
             <Card className="w-full h-full space-y-5 p-4" radius="lg">
@@ -86,13 +86,14 @@ const ResultQuiz = () => {
                                         {
                                             data?.result && data?.result?.length > 0
                                             && q?.answers?.map((a: any, aindex: number) => {
+                                                const arr=data?.result[index]?.studentAnswer.split("")
+                                                console.log("check arr: ",arr)
                                                 return (
                                                     <div key={aindex} className="flex flex-row gap-3 text-xl items-center">
                                                         <Checkbox
                                                             color="secondary"
                                                             isSelected={
-                                                                // aindex == data?.result[index]?.studentAnswer ? +data.result[index].studentAnswer : -1
-                                                                data?.result[index]?.studentAnswer == '' ? false : aindex == +data?.result[index]?.studentAnswer
+                                                                arr.includes(""+aindex)
                                                             }
                                                         />
                                                         <p>
